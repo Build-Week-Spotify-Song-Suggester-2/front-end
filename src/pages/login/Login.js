@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
 import * as yup from "yup"
 import loginSchema from '../../validation/login/loginSchema'
+import { Link } from "react-router-dom"
 
-const url = "https://reqres.in/api/users"
+
 
 export default function Login() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -15,7 +15,7 @@ export default function Login() {
         username: "",
         password: ""
     });
-    const [post, setPost] = useState([]);
+    
   
     useEffect(() => {
       loginSchema.isValid(formState).then(valid => {
@@ -24,30 +24,10 @@ export default function Login() {
     }, [formState]);
   
   
-    useEffect(() => {
-      axios
-        .post(url, formState)
-        .then(res => {
-          setPost(res.data); 
-          
-        })
-        .catch(err => console.log(err.response));
-    }, [formState]);
-  
     const formSubmit = e => {
       e.preventDefault();
-    
-      axios
-        .post(url, formState)
-        .then((res) => {
-          setPost(res.data)
-          setFormState({
-            username: "",
-          })
-        })
-        .catch(err => console.log(err.response));
-        
-    };
+    }
+   
   
     const inputChange = e => {
       e.persist();
@@ -84,16 +64,23 @@ export default function Login() {
 
        <label >
         Username
+        <br></br>
             <input
               type="text"
               name="username"
+              placeholder="username"
               value={formState.username}
               onChange={inputChange}
             />
         {errors.username.length > 0 ? <p style={{color: "red"}} >{errors.username}</p> : null}
        </label>
+       <br></br>
+          <br></br>
+          <br></br>
+          <br></br> 
  <label>
       Password
+      <br></br>
         {errors.password.length > 0 ? <p style={{color: "red"}}>{errors.password}</p> : null}
             <input
               type="password"
@@ -103,10 +90,27 @@ export default function Login() {
               onChange={inputChange}
             />
       </label>
- 
-       
-      <pre>{JSON.stringify(post, null, 2)}</pre>
-      <button disabled={buttonDisabled}>Submit</button>
+      <br></br>
+          <br></br>
+          <br></br>
+          <br></br> 
+      <button disabled={buttonDisabled}>Login</button>
+      <br></br>
+          <br></br>
+          <br></br>
+          <br></br> 
+ <div>Don't have an account?</div>
+ <br></br>
+          <br></br>
+         
+ <Link to={"/register"}>
+          <div>Create Account</div>
+        </Link>
+        <br></br>
+          <br></br>
+          <br></br>
+          <br></br> 
+    
 
     </form>
   )
