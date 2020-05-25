@@ -7,6 +7,6 @@ import ReactDOM from "react-dom";
 
 ReactDOM.render(
   <Router>
-  <App />
+    <App />
   </Router>
   , document.getElementById("root"));
