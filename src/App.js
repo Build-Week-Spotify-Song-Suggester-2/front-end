@@ -2,7 +2,7 @@ import React from 'react';
 import Register from './pages/register/Register'
 import Login from './pages/login/Login'
 import { Route } from "react-router-dom"
-
+import './App.scss'
 
 function App() {
   return (
