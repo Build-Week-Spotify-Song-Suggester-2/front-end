@@ -2,6 +2,7 @@ import React from "react";
 import "./App.scss";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from './utils/PrivateRoute'
+import { connect } from 'react-redux'
 
 // COMPONENTS
 import Register from "./pages/register/Register";
@@ -11,7 +12,10 @@ import Navigation from "./component/Navigation";
 import Dashboard from './pages/dashboard/Dashboard'
 import Search from './pages/search/Search'
 
-function App() {
+function App(props) {
+
+  console.log(props.state)
+
   return (
     <div>
 
@@ -26,10 +30,16 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path='/dashboard' component={Dashboard}/>
-        <Route path="/search" component={Search}/>
+        <PrivateRoute exact path="/search" component={Search}/>
       </Switch>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps, {})(App);

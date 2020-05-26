@@ -29,7 +29,7 @@ export default function Search() {
   return (
     
  
-    <form formSubmit={formSubmit}>
+    <form onSubmit={formSubmit}>
     <h1>Search</h1>
        <label >
         Artist
