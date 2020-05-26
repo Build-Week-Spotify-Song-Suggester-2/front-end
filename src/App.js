@@ -9,10 +9,12 @@ import Login from "./pages/login/Login";
 import Landing from "./pages/landing/Landing";
 import Navigation from "./component/Navigation";
 import Dashboard from './pages/dashboard/Dashboard'
+import Search from './pages/search/Search'
 
 function App() {
   return (
     <div>
+
       <h1>Spotify Song Suggester</h1>
       <br></br>
       <br></br>
@@ -24,6 +26,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path='/dashboard' component={Dashboard}/>
+        <Route path="/search" component={Search}/>
       </Switch>
     </div>
   );
