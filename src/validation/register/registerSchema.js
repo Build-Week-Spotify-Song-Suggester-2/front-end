@@ -1,11 +1,11 @@
 import * as yup from 'yup'
 
 const registerSchema = yup.object().shape({
-    firstName: yup
+    first_name: yup
     .string()
     .min(2, "first name must be at least 2 characters long")
     .required("Required"),
-    lastName: yup
+    last_name: yup
     .string()
     .min(2, "last name must be at least 2 characters long")
     .required("Required"),
