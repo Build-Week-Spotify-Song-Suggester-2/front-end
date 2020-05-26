@@ -1,210 +1,204 @@
-import React, { useState, useEffect } from "react"
-import axios from "axios"
-import * as yup from "yup"
-import registerSchema from '../../validation/register/registerSchema'
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import * as yup from "yup";
+import registerSchema from "../../validation/register/registerSchema";
+import { Link } from "react-router-dom";
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { useHistory } from 'react-router-dom'
 
-const url = "https://reqres.in/api/users"
+// API SCHEMA
+// {
+// 	"username": "ltims6",
+// 	"password": "1234",
+// 	"first_name": "Latosha",
+// 	"last_name": "Tims",
+// 	"email": "ltims6@email.com"
+// }
 
 export default function Register() {
-    const [buttonDisabled, setButtonDisabled] = useState(true);
-    const [formState, setFormState] = useState({
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const { push } = useHistory()
+  const [formState, setFormState] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  useEffect(() => {
+    registerSchema.isValid(formState).then((valid) => {
+      setButtonDisabled(!valid);
     });
-    const [errors, setErrors] = useState({
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-    });
-    const [post, setPost] = useState([]);
-  
-    useEffect(() => {
-      registerSchema.isValid(formState).then(valid => {
-        setButtonDisabled(!valid);
-      });
-    }, [formState]);
-  
-  
-    useEffect(() => {
-      axios
-        .post(url, formState)
-        .then(res => {
-          setPost(res.data); 
-          
-        })
-        .catch(err => console.log(err.response));
-    }, [formState]);
-  
-    const formSubmit = e => {
-      e.preventDefault();
+  }, [formState]);
+
+
+
+  const formSubmit = (e) => {
+    e.preventDefault();
     
-      axios
-        .post(url, formState)
-        .then((res) => {
-          setPost(res.data)
-          setFormState({
-            firstName: "",
-          })
-        })
-        .catch(err => console.log(err.response));
-        
+    axiosWithAuth()
+      .post('api/auth/register', formState)
+      .then( res => {
+        // console.log(res.data)
+        push('/login')
+      })
+  };
+
+  const inputChange = (e) => {
+    e.persist();
+    const newFormData = {
+      ...formState,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
     };
-  
-    const inputChange = e => {
-      e.persist();
-      console.log(formState.name)
-      const newFormData = {
-        ...formState,
-        [e.target.name]:
-          e.target.type === "checkbox" ? e.target.checked : e.target.value
-      };
-    
-      yup
-        .reach(registerSchema, e.target.name)
-        .validate(e.target.value)
-        .then(valid => {
-          setErrors({
-            ...errors,
-            [e.target.name]: ""
-          });
-        })
-        .catch(err => {
-          setErrors({
-            ...errors,
-            [e.target.name]: err.errors[0]
-          });
+
+    yup
+      .reach(registerSchema, e.target.name)
+      .validate(e.target.value)
+      .then((valid) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: "",
         });
-   
-      setFormState(newFormData); 
-    };
+      })
+      .catch((err) => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0],
+        });
+      });
+
+    setFormState(newFormData);
+  };
 
   return (
-    
- 
-    <form formSubmit={formSubmit}>
-      <label >
+    <form>
+      <label>
         First Name
         <br></br>
-            <input
-              type="text"
-              name="firstName"
-              placeholder="first name"
-              value={formState.firstName}
-              onChange={inputChange}
-            />
-        {errors.firstName.length > 0 ? <p style={{color: "red"}} >{errors.firstName}</p> : null}
-       </label>
-       <br></br>
-          <br></br>
-          <br></br>
-          <br></br> 
-          <label >
+        <input
+          type="text"
+          name="first_name"
+          placeholder="first name"
+          value={formState.first_name}
+          onChange={inputChange}
+        />
+        {errors.first_name.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.first_name}</p>
+        ) : null}
+      </label>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <label>
         Last Name
         <br></br>
-            <input
-              type="text"
-              name="lastName"
-              placeholder="last name"
-              value={formState.lastName}
-              onChange={inputChange}
-            />
-        {errors.lastName.length > 0 ? <p style={{color: "red"}} >{errors.lastName}</p> : null}
-       </label>
-       <br></br>
-          <br></br>
-          <br></br>
-          <br></br> 
-       <label >
+        <input
+          type="text"
+          name="last_name"
+          placeholder="last name"
+          value={formState.last_name}
+          onChange={inputChange}
+        />
+        {errors.last_name.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.last_name}</p>
+        ) : null}
+      </label>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <label>
         Username
         <br></br>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              value={formState.username}
-              onChange={inputChange}
-            />
-        {errors.username.length > 0 ? <p style={{color: "red"}} >{errors.username}</p> : null}
-       </label>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>  
-        <label >
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          value={formState.username}
+          onChange={inputChange}
+        />
+        {errors.username.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.username}</p>
+        ) : null}
+      </label>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <label>
         Email
         <br></br>
-        {errors.email.length > 0 ?  <p style={{color: "red"}}>{errors.email}</p>  : null}
-            <input
-              type="text"
-              name="email"
-              placeholder="email"
-              value={formState.email}
-              onChange={inputChange}
-            />
-        </label>
+        {errors.email.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.email}</p>
+        ) : null}
+        <input
+          type="text"
+          name="email"
+          placeholder="email"
+          value={formState.email}
+          onChange={inputChange}
+        />
+      </label>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <label>
+        Password
         <br></br>
-          <br></br>
-          <br></br>
-          <br></br> 
-      <label>
-      Password
-      <br></br>
-        {errors.password.length > 0 ? <p style={{color: "red"}}>{errors.password}</p> : null}
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={formState.password}
-              onChange={inputChange}
-            />
-      </label>
-      <br></br>
-          <br></br>
-          <br></br>
-          <br></br> 
-      <label>
-     Confirm Password
-     <br></br>
-        {errors.password.length > 0 ? <p style={{color: "red"}}>{errors.password}</p> : null}
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={formState.password}
-              onChange={inputChange}
-            />
+        {errors.password.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.password}</p>
+        ) : null}
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          value={formState.password}
+          onChange={inputChange}
+        />
       </label>
       <br></br>
       <br></br>
       <br></br>
       <br></br>
-      <button disabled={buttonDisabled}>Submit</button>
+      {/* <label>
+        Confirm Password
+        <br></br>
+        {errors.confirmPassword.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.confirmPassword}</p>
+        ) : null}
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="password"
+          value={formState.confirmPassword}
+          onChange={inputChange}
+        />
+      </label> */}
       <br></br>
-      <pre>{JSON.stringify(post, null, 2)}</pre>
       <br></br>
       <br></br>
       <br></br>
+      <button onClick={formSubmit} disabled={buttonDisabled}>Submit</button>
       <br></br>
-       <div>Already have an account?</div>
-       <br></br>
-    
-       <Link to={"/login"}>
-          <div>Login Here!</div>
-        </Link>
-     
-      
+      <br></br>
+      <br></br>
+      <div>Already have an account?</div>
+      <br></br>
 
+      <Link to={"/login"}>
+        <div>Login Here!</div>
+      </Link>
     </form>
-  )
-  }
-
-
-
+  );
+}
