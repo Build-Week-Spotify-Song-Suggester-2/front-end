@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from './utils/PrivateRoute'
@@ -11,9 +11,25 @@ import Landing from "./pages/landing/Landing";
 import Navigation from "./component/Navigation";
 import Dashboard from './pages/dashboard/Dashboard'
 import Search from './pages/search/Search'
+import { setLoggedState } from "./redux/actions";
 
 function App(props) {
 
+  // onRefresh, check if user is logged in
+  const { isLogged } = props.state
+  const { setLoggedState } = props
+  useEffect(() => {
+    if (localStorage.getItem('bwSpotifyToken')){
+      localStorage.setItem('logged', true)
+      setLoggedState(true)
+    } else if (localStorage.getItem('bwSpotifyToken') === null){
+      localStorage.setItem('logged', false)
+      setLoggedState(false)
+    }
+  }, [isLogged, setLoggedState])
+  //
+
+  
   return (
     <div>
 
@@ -40,4 +56,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, {setLoggedState})(App);
