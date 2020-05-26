@@ -5,6 +5,8 @@ import { Link, useHistory } from "react-router-dom";
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { setLoggedState } from '../../redux/actions'
 import { connect } from 'react-redux'
+import './styles.login.scss'
+
 
 function Login(props) {
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -65,7 +67,7 @@ function Login(props) {
   };
 
   return (
-    <form>
+    <form className="login">
       <label>
         Username
         <br></br>

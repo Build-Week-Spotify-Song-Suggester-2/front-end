@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-
-
+import './styles.search.scss'
 
 export default function Search() {
   
@@ -29,7 +28,8 @@ export default function Search() {
   return (
     
  
-    <form onSubmit={formSubmit}>
+
+    <form className='search' onSubmit={formSubmit}>
     <h1>Search</h1>
        <label >
         Artist
@@ -62,7 +62,7 @@ export default function Search() {
           <br></br>
           <br></br>
           <br></br> 
-      <button>Search</button>
+      <button className='searchButton'>Search</button>
       <br></br>
           <br></br>
           <br></br>
@@ -78,8 +78,6 @@ export default function Search() {
           <br></br>
           <br></br>
           <br></br> 
-    
-
     </form>
   )
   }

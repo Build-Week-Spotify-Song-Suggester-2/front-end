@@ -5,6 +5,7 @@ import registerSchema from "../../validation/register/registerSchema";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
+import './styles.register.scss'
 
 // API SCHEMA
 // {
@@ -82,7 +83,7 @@ export default function Register() {
 
   return (
 
-    <form>
+    <form className='registerForm'>
       <label>
         First Name
         <br></br>
