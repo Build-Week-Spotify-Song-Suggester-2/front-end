@@ -3,6 +3,7 @@ import Register from './pages/register/Register'
 import Login from './pages/login/Login'
 import Landing from './pages/landing/Landing'
 import Navigation from './component/Navigation'
+import './pages/landing/styles.landing.scss' 
 
 
 import { Route, Switch } from "react-router-dom"
