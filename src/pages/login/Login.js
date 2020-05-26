@@ -3,6 +3,7 @@ import * as yup from "yup";
 import loginSchema from "../../validation/login/loginSchema";
 import { Link, useHistory } from "react-router-dom";
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import './styles.login.scss'
 
 export default function Login() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -62,7 +63,7 @@ export default function Login() {
   };
 
   return (
-    <form>
+    <form className="login">
       <label>
         Username
         <br></br>
