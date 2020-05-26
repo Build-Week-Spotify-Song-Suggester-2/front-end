@@ -13,6 +13,9 @@ function Navigation() {
             <br></br>
             <br></br>
         <Link to={"/"}>Home</Link>
+            <br></br>
+            <br></br>
+        <Link to={"/search"}>Search</Link>
       </div>
     );
   }
