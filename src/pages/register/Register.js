@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { useHistory } from 'react-router-dom'
 
+// API SCHEMA
 // {
 // 	"username": "ltims6",
 // 	"password": "1234",
@@ -37,6 +38,7 @@ export default function Register() {
       setButtonDisabled(!valid);
     });
   }, [formState]);
+
 
 
   const formSubmit = (e) => {
@@ -90,7 +92,7 @@ export default function Register() {
           onChange={inputChange}
         />
         {errors.first_name.length > 0 ? (
-          <p style={{ color: "red" }}>{errors.firstName}</p>
+          <p style={{ color: "red" }}>{errors.first_name}</p>
         ) : null}
       </label>
       <br></br>
@@ -169,20 +171,20 @@ export default function Register() {
       <br></br>
       <br></br>
       <br></br>
-      <label>
+      {/* <label>
         Confirm Password
         <br></br>
-        {errors.password.length > 0 ? (
-          <p style={{ color: "red" }}>{errors.password}</p>
+        {errors.confirmPassword.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.confirmPassword}</p>
         ) : null}
         <input
           type="password"
-          name="password"
+          name="confirmPassword"
           placeholder="password"
-          value={formState.password}
+          value={formState.confirmPassword}
           onChange={inputChange}
         />
-      </label>
+      </label> */}
       <br></br>
       <br></br>
       <br></br>
