@@ -12,12 +12,10 @@ import { Route, Switch } from "react-router-dom"
 function App() {
   return (
     <div>
-        <h1>Spotify Song Suggester</h1>
-        <br></br>
+      <Navigation />
           <br></br>
-          <Navigation />
           <br></br>
-            <br></br>
+          
       <Switch>
       <Route exact path="/" component={Landing}/>
       <Route exact path="/login" component={Login}/>

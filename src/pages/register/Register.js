@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
 import * as yup from "yup"
 import registerSchema from '../../validation/register/registerSchema'
 import { Link } from "react-router-dom"
 
-const url = "https://reqres.in/api/users"
+
 
 export default function Register() {
     const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -24,7 +23,7 @@ export default function Register() {
         password: "",
         confirmPassword: ""
     });
-    const [post, setPost] = useState([]);
+   
   
     useEffect(() => {
       registerSchema.isValid(formState).then(valid => {
@@ -33,30 +32,7 @@ export default function Register() {
     }, [formState]);
   
   
-    useEffect(() => {
-      axios
-        .post(url, formState)
-        .then(res => {
-          setPost(res.data); 
-          
-        })
-        .catch(err => console.log(err.response));
-    }, [formState]);
-  
-    const formSubmit = e => {
-      e.preventDefault();
-    
-      axios
-        .post(url, formState)
-        .then((res) => {
-          setPost(res.data)
-          setFormState({
-            firstName: "",
-          })
-        })
-        .catch(err => console.log(err.response));
-        
-    };
+
   
     const inputChange = e => {
       e.persist();
@@ -89,7 +65,7 @@ export default function Register() {
   return (
     
  
-    <form formSubmit={formSubmit}>
+    <form>
       <label >
         First Name
         <br></br>
@@ -188,7 +164,6 @@ export default function Register() {
       <br></br>
       <button disabled={buttonDisabled}>Submit</button>
       <br></br>
-      <pre>{JSON.stringify(post, null, 2)}</pre>
       <br></br>
       <br></br>
       <br></br>

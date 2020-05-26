@@ -10,15 +10,9 @@ export default function Landing() {
      <div>
 
 
-    <h1>Header</h1>
-    <h2>hello this is the body</h2>
+    <h1>Home</h1>
    
-
-
-
-
-
-
+   
 
     </div>
   )
