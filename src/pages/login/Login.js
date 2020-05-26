@@ -3,8 +3,10 @@ import * as yup from "yup";
 import loginSchema from "../../validation/login/loginSchema";
 import { Link, useHistory } from "react-router-dom";
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { setLoggedState } from '../../redux/actions'
+import { connect } from 'react-redux'
 
-export default function Login() {
+function Login(props) {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const { push } = useHistory()
   const [formState, setFormState] = useState({
@@ -28,8 +30,9 @@ export default function Login() {
     axiosWithAuth()
       .post('api/auth/login', formState)
       .then( res => {
-        console.log(res)
+        // console.log(res)
         localStorage.setItem('bwSpotifyToken', res.data.token)
+        props.setLoggedState(true)
         push('/dashboard')
       })
   };
@@ -118,3 +121,5 @@ export default function Login() {
     </form>
   );
 }
+
+export default connect(null, {setLoggedState})(Login)

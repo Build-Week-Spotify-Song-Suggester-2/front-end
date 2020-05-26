@@ -14,8 +14,6 @@ import Search from './pages/search/Search'
 
 function App(props) {
 
-  console.log(props.state)
-
   return (
     <div>
 
