@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
 
-      <h1 style={{ textAlign: "center" }}>Spotify Song Suggester</h1>
+      <h1 style={{ textAlign: "center", fontFamily: "Arial", }}>Spotify Song Suggester</h1>
       <br></br>
       <br></br>
       <Navigation />
