@@ -52,6 +52,8 @@ export default function Search() {
  
     <form className='search' formSubmit={formSubmit}>
     <h1>Search</h1>
+    <br></br>
+    <br></br>
        <label >
         Artist
         <br></br>
