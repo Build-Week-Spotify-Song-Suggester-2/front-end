@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const Dashboard = props => {
+    
+    useEffect(() => {
+        axiosWithAuth()
+            .get('api/songs')
+            .then( res => {
+                console.log(res)
+            })
+    })
 
     return (
         <div>

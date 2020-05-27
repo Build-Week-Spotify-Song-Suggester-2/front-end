@@ -68,8 +68,12 @@ function Login(props) {
   return (
     <form className="login">
       <h2>Login</h2>
+
       <label>
-        {/* Username: */}
+        {errors.username.length > 0 ? (
+          <p style={{ color: "red" }}>{errors.username}</p>
+        ) : null}
+        {/* Username */}
         <input
           type="text"
           name="username"
@@ -77,9 +81,6 @@ function Login(props) {
           value={formState.username}
           onChange={inputChange}
         />
-        {errors.username.length > 0 ? (
-          <p style={{ color: "red" }}>{errors.username}</p>
-        ) : null}
       </label>
 
       <label>
@@ -100,13 +101,12 @@ function Login(props) {
         Login
       </button>
 
-      <div className='ctaAct'>
+      <div className="ctaAct">
         <div>Don't have an account?</div>
         <Link to={"/register"}>
           <div>Create Account</div>
         </Link>
       </div>
-
     </form>
   );
 }
