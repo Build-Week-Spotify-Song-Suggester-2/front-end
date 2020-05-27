@@ -1,0 +1,16 @@
+.dashNavContainer {
+    background-color: rgb(54, 54, 54);
+    color: white;
+    padding: .3% 2%;
+    position: sticky;
+    top: .1px;
+
+    a {
+        font-family: 'Poppins';
+        margin: 0 1%;
+
+        &:hover {
+            color: #19E68C;
+        }
+    }
+}
