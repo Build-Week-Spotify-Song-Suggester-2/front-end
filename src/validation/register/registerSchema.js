@@ -20,12 +20,7 @@ const registerSchema = yup.object().shape({
     password: yup
     .string()
     .required('Required')
-    .min(2, 'Seems a bit short...')
-    .max(10, 'We prefer insecure system, try a shorter password.'),
-  confirmPassword: yup
-    .string()
-    .required('Required')
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    .min(4, 'Password must be at least 4 characters long'),
 });
 
 export default registerSchema;
