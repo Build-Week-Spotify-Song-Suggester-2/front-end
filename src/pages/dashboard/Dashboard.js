@@ -1,21 +1,39 @@
 import React, { useEffect } from 'react'
-import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { fetchSongList } from '../../redux/actions'
+import { connect } from 'react-redux'
+import './styles.dashboard.scss'
 
 const Dashboard = props => {
+    const { fetchSongList, songListData } = props
+
     
     useEffect(() => {
-        axiosWithAuth()
-            .get('api/songs')
-            .then( res => {
-                console.log(res)
-            })
-    }, [])
+       fetchSongList()
+    }, [fetchSongList])
 
     return (
-        <div>
+        <div className='dashboard'>
             <h1>Dashboard</h1>
+            <div className='listContainer'>
+                {songListData.map( e => {
+                    return (
+                        <div className='card' key={e.id}>
+                            <div className='albumPlaceholder'></div>
+                            <h3>{e.title}</h3>
+                            <h4>{e.artist}</h4>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
 
-export default Dashboard
+const mapStateToProps = state => {
+
+    return {
+        songListData: state.songListData
+    }
+}
+
+export default connect(mapStateToProps, {fetchSongList})(Dashboard)

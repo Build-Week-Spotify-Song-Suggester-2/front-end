@@ -1,5 +1,6 @@
 const initialState = {
-    isLogged: false
+    isLogged: false,
+    songListData: []
 }
 
 export const globalReducer = (state = initialState, action) => {
@@ -9,6 +10,11 @@ export const globalReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLogged: action.payload
+            }
+        case 'FETCH_SONG_LIST':
+            return {
+                ...state,
+                songListData: action.payload
             }
             
         default:
