@@ -35,7 +35,10 @@ function Login(props) {
         localStorage.setItem("bwSpotifyToken", res.data.token);
         props.setLoggedState(true);
         push("/dashboard");
-      });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   };
 
   const inputChange = (e) => {
@@ -66,7 +69,7 @@ function Login(props) {
   };
 
   return (
-    <form className="login">
+    <form className="login" onSubmit={formSubmit}>
       <h2>Login</h2>
 
       <label>
