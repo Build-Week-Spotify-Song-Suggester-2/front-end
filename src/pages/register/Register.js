@@ -86,6 +86,14 @@ export default function Register() {
   return (
 
     <form className='registerForm'>
+     <div>Already have an account?</div>
+      <br></br>
+
+      <Link to={"/login"}>
+        <div>Login Here!</div>
+      </Link>
+      <br></br>
+      <br></br>
       <label>
         First Name
         <br></br>
