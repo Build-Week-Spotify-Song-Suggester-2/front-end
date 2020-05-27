@@ -36,8 +36,8 @@ function Login(props) {
         props.setLoggedState(true);
         push("/dashboard");
       })
-      .catch( err => {
 
+      .catch( err => {
       })
   };
 
@@ -69,8 +69,8 @@ function Login(props) {
   };
 
   return (
-    <form className="login">
-      {}
+
+    <form className="login" onSubmit={formSubmit}>
       <h2>Login</h2>
 
       <label>
