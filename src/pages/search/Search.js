@@ -50,7 +50,7 @@ export default function Search() {
   return (
     
  
-    <form className='search' formSubmit={formSubmit}>
+    <form className='search' onSubmit={formSubmit}>
     <h1>Search</h1>
     <br></br>
     <br></br>
