@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './styles.dashboard.scss'
 import DashboardNav from '../../component/DashboardNav'
+import { fetchSongList } from '../../redux/actions'
 
 const inititalFormValue = {
     artist: '',
@@ -10,7 +11,12 @@ const inititalFormValue = {
 
 const Dashboard = props => {
 
+    const { fetchSongList } = props
     const [ formValues, setFormValues ]= useState(inititalFormValue)
+
+    useEffect(() => {
+        fetchSongList()
+     }, [fetchSongList])
 
     const inputHandler = e => {
         const name = e.target.name
@@ -52,12 +58,14 @@ const Dashboard = props => {
                 <div className='songContainer'>
                     {props.songListData.map( song => {
                         return (
-                            <div key={song.id}>
+                            <div className='dashCard' key={song.id}>
                                 <div className='albumArt'>
 
                                 </div>
-                                <h4>{song.title}</h4>
-                                <h5>{song.artist}</h5>
+                                <div className='songInfo'>
+                                    <h4>{song.title}</h4>
+                                    <h5>{song.artist}</h5>
+                                </div>
                             </div>
                         )
                     })}
@@ -75,4 +83,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(Dashboard)
+export default connect(mapStateToProps, {fetchSongList})(Dashboard)

@@ -38,9 +38,10 @@ function App(props) {
   return (
     <div>
       <Navigation />
-      
+    
       <Switch>
-        {/* <Route exact path="/" component={() => {window.location.href = 'https://example.com/1234'; return null; }}/> */}
+        <Route exact path="/" component={() => {window.location.href = 'https://bw-spotify-song-suggester-2-web-ui.netlify.app/'; return null; }}/>
+        <Route exact path="/about" component={() => {window.location.href = 'https://bw-spotify-song-suggester-2-web-ui.netlify.app/about.html/'; return null; }}/>
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path='/dashboard' component={Dashboard}/>

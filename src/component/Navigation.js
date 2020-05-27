@@ -35,7 +35,7 @@ function Navigation(props) {
 
       <div className="links">
         <StyledLink to={"/"}>Home</StyledLink>
-        <StyledLink to={"/search"}>Search</StyledLink>
+        <StyledLink to={"/about"}>About</StyledLink>
         <StyledLink to={"/register"}>Register</StyledLink>
         <StyledLink to={"/login"}>Login</StyledLink>
       </div>
