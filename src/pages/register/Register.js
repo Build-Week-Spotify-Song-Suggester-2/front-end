@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import registerSchema from "../../validation/register/registerSchema";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from '../../utils/axiosWithAuth'
-import { useHistory } from 'react-router-dom'
-import './styles.register.scss'
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
+import "./styles.register.scss";
 
 // API SCHEMA
 // {
@@ -18,7 +17,7 @@ import './styles.register.scss'
 
 export default function Register() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const { push } = useHistory()
+  const { push } = useHistory();
   const [formState, setFormState] = useState({
     first_name: "",
     last_name: "",
@@ -41,17 +40,15 @@ export default function Register() {
     });
   }, [formState]);
 
-
-
   const formSubmit = (e) => {
     e.preventDefault();
-    
+
     axiosWithAuth()
-      .post('api/auth/register', formState)
-      .then( res => {
+      .post("api/auth/register", formState)
+      .then((res) => {
         // console.log(res.data)
-        push('/login')
-      })
+        push("/login");
+      });
   };
 
   const inputChange = (e) => {
@@ -82,11 +79,10 @@ export default function Register() {
   };
 
   return (
-
-    <form className='registerForm'>
+    <form className="registerForm">
+      <h2>Register</h2>
       <label>
-        First Name
-        <br></br>
+        {/* First Name */}
         <input
           type="text"
           name="first_name"
@@ -98,13 +94,9 @@ export default function Register() {
           <p style={{ color: "red" }}>{errors.first_name}</p>
         ) : null}
       </label>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+
       <label>
-        Last Name
-        <br></br>
+        {/* Last Name */}
         <input
           type="text"
           name="last_name"
@@ -116,13 +108,9 @@ export default function Register() {
           <p style={{ color: "red" }}>{errors.last_name}</p>
         ) : null}
       </label>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+
       <label>
-        Username
-        <br></br>
+        {/* Username */}
         <input
           type="text"
           name="username"
@@ -134,13 +122,9 @@ export default function Register() {
           <p style={{ color: "red" }}>{errors.username}</p>
         ) : null}
       </label>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+
       <label>
-        Email
-        <br></br>
+        {/* Email */}
         {errors.email.length > 0 ? (
           <p style={{ color: "red" }}>{errors.email}</p>
         ) : null}
@@ -152,13 +136,9 @@ export default function Register() {
           onChange={inputChange}
         />
       </label>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+
       <label>
-        Password
-        <br></br>
+        {/* Password */}
         {errors.password.length > 0 ? (
           <p style={{ color: "red" }}>{errors.password}</p>
         ) : null}
@@ -170,13 +150,9 @@ export default function Register() {
           onChange={inputChange}
         />
       </label>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+
       {/* <label>
         Confirm Password
-        <br></br>
         {errors.confirmPassword.length > 0 ? (
           <p style={{ color: "red" }}>{errors.confirmPassword}</p>
         ) : null}
@@ -188,20 +164,17 @@ export default function Register() {
           onChange={inputChange}
         />
       </label> */}
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <button onClick={formSubmit} disabled={buttonDisabled}>Submit</button>
-      <br></br>
-      <br></br>
-      <br></br>
-      <div>Already have an account?</div>
-      <br></br>
 
-      <Link to={"/login"}>
-        <div>Login Here!</div>
-      </Link>
+      <button onClick={formSubmit} disabled={buttonDisabled}>
+        Submit
+      </button>
+
+      <div className="ctaAct">
+        <div>Already have an account?</div>
+        <Link to={"/login"}>
+          <div>Login Here!</div>
+        </Link>
+      </div>
     </form>
   );
 }
