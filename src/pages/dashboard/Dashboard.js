@@ -9,7 +9,7 @@ const Dashboard = props => {
             .then( res => {
                 console.log(res)
             })
-    })
+    }, [])
 
     return (
         <div>
