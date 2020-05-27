@@ -29,16 +29,11 @@ function App(props) {
   }, [isLogged, setLoggedState])
   //
 
-  
+
   return (
     <div>
-
-      <h1 style={{ textAlign: "center", fontFamily: "Arial", }}>Spotify Song Suggester</h1>
-      <br></br>
-      <br></br>
       <Navigation />
-      <br></br>
-      <br></br>
+      
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/login" component={Login} />

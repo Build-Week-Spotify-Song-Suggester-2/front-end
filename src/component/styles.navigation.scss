@@ -1,18 +1,28 @@
-.navigation {
+nav {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
     background-color: #19E68C;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-   
-    a:link {
-        color:black;
-        text-decoration:none;}
-      a:visited {
-        color:black;
-        text-decoration:none;}
-      a:hover {
-        text-decoration:underline;
+    padding: 1.5%;
+    filter: drop-shadow(3px 0 5px rgb(167, 167, 167));
+    font-family: 'Poppins';
+    color: rgb(12, 109, 78);
+
+    h1 {
+      font-family: 'Montserrat';
+      color: rgb(71, 70, 70);
+    }
+    .links {
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      a {
+        margin: 0 2%;
+
+        &:hover {
+          color: white;
+        }
       }
+    }
+   
 }
