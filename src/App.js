@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.scss";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import PrivateRoute from './utils/PrivateRoute'
 import { connect } from 'react-redux'
 import { setLoggedState, fetchSongList } from "./redux/actions";
@@ -40,7 +40,10 @@ function App(props) {
       <Navigation />
     
       <Switch>
-        <Route exact path="/" component={() => {window.location.href = 'https://bw-spotify-song-suggester-2-web-ui.netlify.app/'; return null; }}/>
+        <Route exact path="/">
+          <Redirect to='/dashboard'/>
+        </Route>
+        <Route exact path="/home" component={() => {window.location.href = 'https://bw-spotify-song-suggester-2-web-ui.netlify.app/'; return null; }}/>
         <Route exact path="/about" component={() => {window.location.href = 'https://bw-spotify-song-suggester-2-web-ui.netlify.app/about.html/'; return null; }}/>
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
