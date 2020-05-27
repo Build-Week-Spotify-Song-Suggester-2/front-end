@@ -24,7 +24,6 @@ export default function Register() {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
   const [errors, setErrors] = useState({
     first_name: "",
@@ -32,7 +31,6 @@ export default function Register() {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   useEffect(() => {
@@ -155,20 +153,7 @@ export default function Register() {
       </label>
 
 
-      {/* <label>
-        Confirm Password
-        {errors.confirmPassword.length > 0 ? (
-          <p style={{ color: "red" }}>{errors.confirmPassword}</p>
-        ) : null}
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="confirm password"
-          value={formState.confirmPassword}
-          onChange={inputChange}
-        />
-      </label> */}
-
+   
       <button onClick={formSubmit} disabled={buttonDisabled}>
         Submit
       </button>

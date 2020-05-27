@@ -50,9 +50,10 @@ export default function Search() {
   return (
     
  
-
-    <form className='search' onSubmit={formSubmit}>
+    <form className='search' formSubmit={formSubmit}>
     <h1>Search</h1>
+    <br></br>
+    <br></br>
        <label >
         Artist
         <br></br>
