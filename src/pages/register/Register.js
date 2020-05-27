@@ -86,7 +86,7 @@ export default function Register() {
         <input
           type="text"
           name="first_name"
-          placeholder="first name"
+          placeholder="First Name"
           value={formState.first_name}
           onChange={inputChange}
         />
@@ -100,7 +100,7 @@ export default function Register() {
         <input
           type="text"
           name="last_name"
-          placeholder="last name"
+          placeholder="Last Name"
           value={formState.last_name}
           onChange={inputChange}
         />
@@ -114,7 +114,7 @@ export default function Register() {
         <input
           type="text"
           name="username"
-          placeholder="username"
+          placeholder="Username"
           value={formState.username}
           onChange={inputChange}
         />
@@ -131,7 +131,7 @@ export default function Register() {
         <input
           type="text"
           name="email"
-          placeholder="email"
+          placeholder="Email"
           value={formState.email}
           onChange={inputChange}
         />
@@ -145,7 +145,7 @@ export default function Register() {
         <input
           type="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           value={formState.password}
           onChange={inputChange}
         />
