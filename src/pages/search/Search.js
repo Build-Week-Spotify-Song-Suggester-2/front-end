@@ -1,19 +1,21 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import axios from 'axios';
 import './styles.search.scss'
+const url = 'https://spotify-song-suggester-bw.herokuapp.com/'
+
 
 export default function Search() {
-  
     const [formState, setFormState] = useState({
       artist: "",
       title: ""
     });
-  
+    const [searchList, setSearchList] = useState([])
+
     const formSubmit = e => {
       e.preventDefault();
     }
    
-  
     const inputChange = e => {
       e.persist();
       const newFormData = {
@@ -24,6 +26,26 @@ export default function Search() {
     
       setFormState(newFormData); 
     };
+
+    
+    useEffect(() => {
+      const getList = () => {
+        axios
+          .get(url)
+          .then(response => {
+            setSearchList(response.data);
+            console.log(response);
+          })
+          .catch(error => {
+            console.error('Server Error', error);
+          });
+      }
+      getList();
+    }, []);
+
+
+
+
 
   return (
     
@@ -64,6 +86,7 @@ export default function Search() {
           <br></br> 
       <button className='searchButton'>Search</button>
       <br></br>
+      <pre>{JSON.stringify(searchList)}</pre>
           <br></br>
           <br></br>
           <br></br> 

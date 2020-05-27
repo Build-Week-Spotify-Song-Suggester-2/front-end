@@ -24,6 +24,7 @@ export default function Register() {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const [errors, setErrors] = useState({
     first_name: "",
@@ -62,6 +63,7 @@ export default function Register() {
     yup
       .reach(registerSchema, e.target.name)
       .validate(e.target.value)
+      
       .then((valid) => {
         setErrors({
           ...errors,
@@ -79,6 +81,7 @@ export default function Register() {
   };
 
   return (
+
     <form className="registerForm">
       <h2>Register</h2>
       <label>
@@ -91,7 +94,7 @@ export default function Register() {
           onChange={inputChange}
         />
         {errors.first_name.length > 0 ? (
-          <p style={{ color: "red" }}>{errors.first_name}</p>
+        <p style={{ color: "red" }}>{errors.first_name}</p>
         ) : null}
       </label>
 
@@ -151,6 +154,7 @@ export default function Register() {
         />
       </label>
 
+
       {/* <label>
         Confirm Password
         {errors.confirmPassword.length > 0 ? (
@@ -159,7 +163,7 @@ export default function Register() {
         <input
           type="password"
           name="confirmPassword"
-          placeholder="password"
+          placeholder="confirm password"
           value={formState.confirmPassword}
           onChange={inputChange}
         />

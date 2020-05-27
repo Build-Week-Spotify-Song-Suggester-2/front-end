@@ -16,11 +16,16 @@ const registerSchema = yup.object().shape({
   email: yup
     .string()
     .email("Must be a valid email address")
-    .required("Must include email address"),
-  password: yup
+    .required("Required"),
+    password: yup
     .string()
-    .min(6, "Passwords must be at least 6 characters long")
-    .required("Password is Required"),
+    .required('Required')
+    .min(2, 'Seems a bit short...')
+    .max(10, 'We prefer insecure system, try a shorter password.'),
+  confirmPassword: yup
+    .string()
+    .required('Required')
+    .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
 export default registerSchema;
