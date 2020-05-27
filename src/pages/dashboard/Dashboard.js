@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './styles.dashboard.scss'
 import DashboardNav from '../../component/DashboardNav'
-import { fetchSongList } from '../../redux/actions'
+import { fetchSongList, addSong, deleteSong } from '../../redux/actions'
 
 const inititalFormValue = {
     artist: '',
@@ -11,7 +11,7 @@ const inititalFormValue = {
 
 const Dashboard = props => {
 
-    const { fetchSongList } = props
+    const { fetchSongList, addSong, deleteSong } = props
     const [ formValues, setFormValues ]= useState(inititalFormValue)
 
     useEffect(() => {
@@ -27,6 +27,7 @@ const Dashboard = props => {
             [name]: value
         })
     }
+
 
     return (
         <div className='dashboard'>
@@ -51,7 +52,11 @@ const Dashboard = props => {
                         placeholder='Song Title'>
                         </input>
 
-                        <button>Add</button>
+                        <button onClick={e => {
+                            e.preventDefault()
+                            addSong(formValues)
+                            setFormValues(inititalFormValue)
+                        }}>Add</button>
                     </form>
                 </div>
 
@@ -66,6 +71,10 @@ const Dashboard = props => {
                                     <h4>{song.title}</h4>
                                     <h5>{song.artist}</h5>
                                 </div>
+                                <div onClick={ e => {
+                                    e.preventDefault()
+                                    deleteSong(song.id)
+                                }}>X</div>
                             </div>
                         )
                     })}
@@ -83,4 +92,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchSongList})(Dashboard)
+export default connect(mapStateToProps, {fetchSongList, addSong, deleteSong})(Dashboard)

@@ -16,6 +16,16 @@ export const globalReducer = (state = initialState, action) => {
                 ...state,
                 songListData: action.payload
             }
+        case 'ADD_SONG':
+            return {
+                ...state,
+                songListData: [...state.songListData, action.payload]
+            }
+        case 'DELETE_SONG':
+            return {
+                ...state,
+                songListData: action.payload
+            }
             
         default:
             return state
