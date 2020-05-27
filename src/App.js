@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from './utils/PrivateRoute'
+import { connect } from 'react-redux'
 
 // COMPONENTS
 import Register from "./pages/register/Register";
@@ -10,26 +11,44 @@ import Landing from "./pages/landing/Landing";
 import Navigation from "./component/Navigation";
 import Dashboard from './pages/dashboard/Dashboard'
 import Search from './pages/search/Search'
+import { setLoggedState } from "./redux/actions";
 
-function App() {
+function App(props) {
+
+  // onRefresh, check if user is logged in
+  const { isLogged } = props.state
+  const { setLoggedState } = props
+  useEffect(() => {
+    if (localStorage.getItem('bwSpotifyToken')){
+      localStorage.setItem('logged', true)
+      setLoggedState(true)
+    } else if (localStorage.getItem('bwSpotifyToken') === null){
+      localStorage.setItem('logged', false)
+      setLoggedState(false)
+    }
+  }, [isLogged, setLoggedState])
+  //
+
+
   return (
     <div>
-
-      <h1 style={{ textAlign: "center", fontFamily: "Arial", }}>Spotify Song Suggester</h1>
-      <br></br>
-      <br></br>
       <Navigation />
-      <br></br>
-      <br></br>
+      
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute exact path='/dashboard' component={Dashboard}/>
-        <Route path="/search" component={Search}/>
+        <PrivateRoute exact path="/search" component={Search}/>
       </Switch>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps, {setLoggedState})(App);

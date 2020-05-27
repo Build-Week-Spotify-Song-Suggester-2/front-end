@@ -1,25 +1,52 @@
-import React from 'react';
-import { Link } from "react-router-dom"
-import './styles.navigation.scss'
+import React from "react";
+import { useHistory } from "react-router-dom";
+import "./styles.navigation.scss";
+import { connect } from "react-redux";
+import { setLoggedState } from "../redux/actions";
+import StyledLink from "./StyledLink";
 
+function Navigation(props) {
+  const { push } = useHistory();
 
-function Navigation() {
-    return (
-      <div className='navigation'>  
-      <Link to={"/"}>Home</Link>   
-          <br></br>
-          <br></br>
-      <Link to={"/search"}>Search</Link>  
-          <br></br>
-          <br></br>
-      <Link to={"/register"}>Register</Link>
-          <br></br>
-          <br></br>
-      <Link to={"/login"}>Login</Link>
-          <br></br>
-          <br></br>
+  return props.state.isLogged ? (
+    <nav>
+      <h1>Spotify Song Suggester</h1>
+      <div className="links">
+        <StyledLink to={"/"}>Home</StyledLink>
+        <StyledLink to={"/search"}>Search</StyledLink>
+        <StyledLink to={"/dashboard"}>Dashboard</StyledLink>
+        <StyledLink
+          onClick={(e) => {
+            e.preventDefault();
+
+            localStorage.removeItem("bwSpotifyToken");
+            props.setLoggedState(false);
+            push("/");
+          }}
+          to={"/logout"}
+        >
+          Logout
+        </StyledLink>
       </div>
-    );
-  }
-  
-  export default Navigation;
+    </nav>
+  ) : (
+    <nav>
+      <h1>Spotify Song Suggester</h1>
+
+      <div className="links">
+        <StyledLink to={"/"}>Home</StyledLink>
+        <StyledLink to={"/search"}>Search</StyledLink>
+        <StyledLink to={"/register"}>Register</StyledLink>
+        <StyledLink to={"/login"}>Login</StyledLink>
+      </div>
+    </nav>
+  );
+}
+
+const mapStateToProps = (state) => {
+  return {
+    state,
+  };
+};
+
+export default connect(mapStateToProps, { setLoggedState })(Navigation);

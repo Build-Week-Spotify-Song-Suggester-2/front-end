@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import loginSchema from "../../validation/login/loginSchema";
 import { Link, useHistory } from "react-router-dom";
-import { axiosWithAuth } from '../../utils/axiosWithAuth'
-import './styles.login.scss'
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { setLoggedState } from "../../redux/actions";
+import { connect } from "react-redux";
+import "./styles.login.scss";
 
-export default function Login() {
+function Login(props) {
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const { push } = useHistory()
+  const { push } = useHistory();
   const [formState, setFormState] = useState({
     username: "",
     password: "",
@@ -27,12 +29,13 @@ export default function Login() {
     e.preventDefault();
 
     axiosWithAuth()
-      .post('api/auth/login', formState)
-      .then( res => {
-        console.log(res)
-        localStorage.setItem('bwSpotifyToken', res.data.token)
-        push('/dashboard')
-      })
+      .post("api/auth/login", formState)
+      .then((res) => {
+        // console.log(res)
+        localStorage.setItem("bwSpotifyToken", res.data.token);
+        props.setLoggedState(true);
+        push("/dashboard");
+      });
   };
 
   const inputChange = (e) => {
@@ -64,13 +67,13 @@ export default function Login() {
 
   return (
     <form className="login">
+      <h2>Login</h2>
       <label>
-        Username
-        <br></br>
+        {/* Username: */}
         <input
           type="text"
           name="username"
-          placeholder="username"
+          placeholder="Username"
           value={formState.username}
           onChange={inputChange}
         />
@@ -78,44 +81,34 @@ export default function Login() {
           <p style={{ color: "red" }}>{errors.username}</p>
         ) : null}
       </label>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+
       <label>
-        Password
-        <br></br>
+        {/* Password: */}
         {errors.password.length > 0 ? (
           <p style={{ color: "red" }}>{errors.password}</p>
         ) : null}
         <input
           type="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           value={formState.password}
           onChange={inputChange}
         />
       </label>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <button onClick={formSubmit} disabled={buttonDisabled}>Login</button>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <div>Don't have an account?</div>
-      <br></br>
-      <br></br>
 
-      <Link to={"/register"}>
-        <div>Create Account</div>
-      </Link>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      <button onClick={formSubmit} disabled={buttonDisabled}>
+        Login
+      </button>
+
+      <div className='ctaAct'>
+        <div>Don't have an account?</div>
+        <Link to={"/register"}>
+          <div>Create Account</div>
+        </Link>
+      </div>
+
     </form>
   );
 }
+
+export default connect(null, { setLoggedState })(Login);
