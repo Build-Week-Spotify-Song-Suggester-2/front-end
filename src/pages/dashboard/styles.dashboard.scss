@@ -1,34 +1,70 @@
 .dashboard {
+    font-family: 'Poppins';
 
-    h1 {
-        text-align: center;
-    }
-    .listContainer {
+    .container {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 5%;
-        font-family: 'Poppins';
+        padding: 0 10%;
 
-        .card {
-            margin: 1%;
-            color: white;
-            background-color: rgb(37, 37, 37);
-            text-align: center;
+        .formContainer{
+            width: 45%;
+            align-self: center;
+            // height: 8vh;
+            
+            form {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
 
-            .albumPlaceholder {
-                width: 300px;
-                height: 300px;
-                background-color: rgb(211, 207, 207);
+                input {
+                    margin: 1%;
+                    padding: 3%;
+                    width: 50%;
+                }
+                button {
+                    width: 15%;
+                    align-self: center;
+                    padding: .3%;
+                    border-radius: 15px;
+                    margin-top: 5%;
+                    cursor: pointer;
+                    outline: none;
+                }
+                h2 {
+                    margin-bottom: 3%;
+                }
             }
-            h3 {
-                font-size: 1rem;
-                padding-top: 2%;
-            }
-            h4 {
-                font-size: .8rem;
-                color: rgb(155, 153, 153);
-                padding-bottom: 2%;
+        }
+        .songContainer {
+            width: 45%;
+            height: 80vh;
+            overflow-y: scroll;
+            margin: 3% 0;
+            border: 2px solid black;
+
+            .dashCard {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid black;
+
+                .albumArt {
+                    width: 50px;
+                    height: 50px;
+                    background-color: grey;
+                }
+                .songInfo {
+                    flex-grow: 1;
+                    padding-left: 5%;
+
+                    h4 {
+                    
+                    }
+                    h5 {
+                        font-size: .8rem;
+                        color: grey;
+                    }
+                }
             }
         }
     }

@@ -34,8 +34,8 @@ function Navigation(props) {
       <h1>Spotify Song Suggester</h1>
 
       <div className="links">
-        <StyledLink>Home</StyledLink>
-        <StyledLink to={"/search"}>Search</StyledLink>
+        <StyledLink to={"/"}>Home</StyledLink>
+        <StyledLink to={"/about"}>About</StyledLink>
         <StyledLink to={"/register"}>Register</StyledLink>
         <StyledLink to={"/login"}>Login</StyledLink>
       </div>
