@@ -38,9 +38,11 @@
                     color: red;
                 }
             }
-
+            
             h2 {
                 margin: 3%;
+
+               
             }
 
             input {
@@ -97,8 +99,19 @@
                         background-color: rgb(29, 209, 131);
                     }
                 }
+                
                 h2 {
                     margin-bottom: 3%;
+                    display: flex;
+                    justify-content: center;
+                    width: 50%;
+
+                    .plus {
+                        color: #19E68C;
+                        font-size: 1.2rem;
+                        align-self: center;
+                        margin-right: 3%;
+                    }
                 }
             }
         }
