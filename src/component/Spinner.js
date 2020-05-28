@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Spinner = () => {
   return (
     <Div>
-      <div class="loader">Loading...</div>
+      <div className="loader">Loading...</div>
     </Div>
   );
 };

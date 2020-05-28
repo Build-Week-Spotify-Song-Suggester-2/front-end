@@ -13,6 +13,7 @@ function Navigation(props) {
       <h1>Spotify Song Suggester</h1>
       <div className="links">
         <StyledLink to={"/home"}>Home</StyledLink>
+        <StyledLink to={"/about"}>About</StyledLink>
         <StyledLink to={"/search"}>Search</StyledLink>
         <StyledLink to={"/dashboard"}>Dashboard</StyledLink>
         <StyledLink

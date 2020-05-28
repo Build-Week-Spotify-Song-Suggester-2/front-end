@@ -130,7 +130,7 @@ const Dashboard = props => {
                 </div>
 
                 <div className='songContainer'>
-                    { props.isFetching ? <div className='spinnerContainer'><Spinner /></div> : props.songListData.map( song => {
+                    { props.isFetching ? <div className='spinnerContainer'><Spinner/></div> : props.songListData.map( song => {
                         return (
                             <div className='dashCard' key={song.id}>
                                 <div className='albumArt'>
