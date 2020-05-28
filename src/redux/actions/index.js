@@ -47,3 +47,18 @@ export const deleteSong = songId => {
         })
     )
 }
+export const editSong = (songId, newSong) => {
+    return dispatch => (
+        axiosWithAuth()
+        .put(`api/songs/${songId}`, newSong)
+        .then( res => {
+            axiosWithAuth()
+            .get('api/songs')
+            .then( res =>
+                dispatch({
+                    type: 'EDIT_SONG',
+                    payload: res.data
+                }))
+        })
+    )
+}
