@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faEdit } from '@fortawesome/free-regular-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import Spinner from '../../component/Spinner'
 
 const inititalFormValue = {
     artist: '',
@@ -129,7 +130,7 @@ const Dashboard = props => {
                 </div>
 
                 <div className='songContainer'>
-                    { props.isFetching ? 'yes' : props.songListData.map( song => {
+                    { props.isFetching ? <div className='spinnerContainer'><Spinner /></div> : props.songListData.map( song => {
                         return (
                             <div className='dashCard' key={song.id}>
                                 <div className='albumArt'>
