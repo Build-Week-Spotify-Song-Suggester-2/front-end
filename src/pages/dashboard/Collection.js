@@ -1,10 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import "./styles.collection.scss";
 import DashboardNav from "../../component/DashboardNav";
 import Spinner from "../../component/Spinner";
+import { axiosWithAuthSpotify } from '../../utils/axiosWithAuth'
 
 const Collection = (props) => {
+
+  useEffect(() => {
+    axiosWithAuthSpotify()
+    .get('search?q=queen%2039&type=track,artist')
+    .then( res => {
+      console.log(res)
+    })
+  }, [])
+
   return (
     <div>
       <DashboardNav />

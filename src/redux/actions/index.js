@@ -1,4 +1,4 @@
-import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { axiosWithAuth, axiosWithAuthSpotify } from '../../utils/axiosWithAuth'
 
 export const setLoggedState = response => {
     return dispatch => (
@@ -59,6 +59,18 @@ export const editSong = (songId, newSong) => {
                     type: 'EDIT_SONG',
                     payload: res.data
                 }))
+        })
+    )
+}
+export const fetchSearchSpotify = encodeUrl => {
+    return dispatch => (
+        axiosWithAuthSpotify()
+        .get(encodeUrl)
+        .then( res => {
+            dispatch({
+                type: 'SEARCH_ON_SPOTIFY',
+                payload: res.data
+            })
         })
     )
 }

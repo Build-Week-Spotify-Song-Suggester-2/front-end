@@ -1,7 +1,10 @@
 const initialState = {
     isLogged: false,
     isFetching: true,
-    songListData: []
+    songListData: [],
+    // FROM SPOTIFY 
+    song_info: []
+    //
 }
 
 export const globalReducer = (state = initialState, action) => {
@@ -32,6 +35,11 @@ export const globalReducer = (state = initialState, action) => {
             return {
                 ...state,
                 songListData: action.payload
+            }
+        case 'SEARCH_ON_SPOTIFY':
+            return {
+                ...state,
+                song_info: action.payload
             }
             
         default:

@@ -166,4 +166,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchSongList, addSong, deleteSong, editSong})(Dashboard)
+export default connect(mapStateToProps, {fetchSongList, addSong, deleteSong, editSong })(Dashboard)
