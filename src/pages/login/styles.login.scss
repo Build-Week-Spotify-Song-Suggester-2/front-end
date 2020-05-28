@@ -6,6 +6,18 @@
   justify-content: center;
   margin-top: 10%;
 
+  .loginFailed.hide {
+      display: none;
+  }
+  .loginFailed {
+    color: red;
+    margin-bottom: 3%;
+
+    a {
+      color: rgb(59, 73, 192);
+    }
+  }
+
   label {
     p {
       font-size: 0.8rem;
