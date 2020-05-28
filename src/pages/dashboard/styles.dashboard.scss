@@ -38,9 +38,11 @@
                     color: red;
                 }
             }
-
+            
             h2 {
                 margin: 3%;
+
+               
             }
 
             input {
@@ -82,16 +84,34 @@
                     width: 50%;
                 }
                 button {
-                    width: 15%;
+                    width: 20%;
                     align-self: center;
-                    padding: .3%;
+                    padding: .9%;
                     border-radius: 15px;
                     margin-top: 5%;
                     cursor: pointer;
                     outline: none;
+                    background-color: #19E68C;
+                    border: none;
+                    color: rgb(63, 62, 62);
+
+                    &:hover {
+                        background-color: rgb(29, 209, 131);
+                    }
                 }
+                
                 h2 {
                     margin-bottom: 3%;
+                    display: flex;
+                    justify-content: center;
+                    width: 50%;
+
+                    .plus {
+                        color: #19E68C;
+                        font-size: 1.2rem;
+                        align-self: center;
+                        margin-right: 3%;
+                    }
                 }
             }
         }
@@ -117,7 +137,7 @@
                 .albumArt {
                     width: 50px;
                     height: 50px;
-                    background-color: grey;
+                    background: linear-gradient(hsl(0, 0%, 9%), #706f6f);
                 }
                 .songInfo {
                     flex-grow: 1;

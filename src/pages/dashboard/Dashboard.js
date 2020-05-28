@@ -5,7 +5,7 @@ import DashboardNav from '../../component/DashboardNav'
 import { fetchSongList, addSong, deleteSong, editSong } from '../../redux/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faEdit } from '@fortawesome/free-regular-svg-icons'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import Spinner from '../../component/Spinner'
 
@@ -13,7 +13,6 @@ const inititalFormValue = {
     artist: '',
     title: ''
 }
-
 
 const Dashboard = props => {
 
@@ -104,7 +103,7 @@ const Dashboard = props => {
             <div className='container'>
                 <div className='formContainer'>
                     <form>
-                        <h2>Add Songs</h2>
+                        <h2><FontAwesomeIcon className='plus' icon={faPlusSquare} /> Add Songs</h2>
                         <input 
                         name='artist'
                         value={formValues.artist}

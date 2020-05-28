@@ -1,58 +1,71 @@
 .login {
-    text-align: center;
-    font-family: 'Poppins';
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 10%;
+  text-align: center;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10%;
 
-    label {
-
-        p {
-            font-size: .8rem;
-        }
-
-            input {
-                margin: 1%;
-                padding:  .8% 1%;
-                width: 20%;
-            }
-    }
-    button {
-        width: 8%;
-        align-self: center;
-        padding: .3%;
-        border-radius: 15px;
-        margin-top: 1%;
-        cursor: pointer;
-        outline: none;
-
-            &:disabled {
-                cursor: default;
-            }
-    }
-    .ctaAct {
-        margin-top: 2%;
+  label {
+    p {
+      font-size: 0.8rem;
     }
 
-    select {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
-        background-position: calc(100% - 20px) calc(1em + 8px), calc(100% - 15px) calc(1em + 8px), calc(100% - 2.5em) 0.5em;
-        background-size: 5px 5px, 5px 5px, 1px 2.5em;
-        background-repeat: no-repeat;
+    input {
+      margin: 1%;
+      padding: 0.8% 1%;
+      width: 20%;
     }
-    
-    select:focus {
-        background-image: linear-gradient(45deg, gray 50%, transparent 50%), linear-gradient(135deg, transparent 50%, gray 50%), linear-gradient(to right, #ccc, #ccc);
-        background-position: calc(100% - 15px) 25px, calc(100% - 20px) 25px, calc(100% - 2.5em) 0.5em;
-        background-size: 5px 5px, 5px 5px, 1px 2.5em;
-        background-repeat: no-repeat;
-        outline: 0;
+  }
+  button {
+    width: 8%;
+    align-self: center;
+    padding: 0.3%;
+    border-radius: 15px;
+    margin-top: 1%;
+    cursor: pointer;
+    outline: none;
+    background-color: #19e68c;
+    border: none;
+    color: rgb(63, 62, 62);
+
+    &:hover {
+      background-color: rgb(29, 209, 131);
     }
-    
+
+    &:disabled {
+      cursor: default;
+      background-color: rgb(199, 198, 198);
+      color: gray;
+    }
+  }
+  .ctaAct {
+    margin-top: 2%;
+  }
+
+  select {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 20px) calc(1em + 8px),
+      calc(100% - 15px) calc(1em + 8px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 2.5em;
+    background-repeat: no-repeat;
+  }
+
+  select:focus {
+    background-image: linear-gradient(45deg, gray 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, gray 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 15px) 25px, calc(100% - 20px) 25px,
+      calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 2.5em;
+    background-repeat: no-repeat;
+    outline: 0;
+  }
 }

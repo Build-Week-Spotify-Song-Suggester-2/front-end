@@ -4,6 +4,9 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import "./styles.search.scss";
 import { fetchSearchSpotify } from '../../redux/actions'
 import { connect } from 'react-redux'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 // TO RESET AFTER SUBMIT
 const initialFormState = {
@@ -56,23 +59,23 @@ function Search(props) {
 
   return (
     <form className="search" onSubmit={formSubmit}>
-      <h1>Search</h1>
+      <h1>Search<FontAwesomeIcon className='searchIco' icon={faSearch}/></h1>
       <label>
-        Artist
+        {/* Artist */}
         <input
           type="text"
           name="artist"
-          placeholder="artist"
+          placeholder="Artist"
           value={formState.artist}
           onChange={inputChange}
         />
       </label>
       <label>
-        Title
+        {/* Title */}
         <input
           type="text"
           name="title"
-          placeholder="title"
+          placeholder="Title"
           value={formState.title}
           onChange={inputChange}
         />
