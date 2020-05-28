@@ -1,5 +1,6 @@
 const initialState = {
     isLogged: false,
+    isFetching: true,
     songListData: []
 }
 
@@ -14,7 +15,8 @@ export const globalReducer = (state = initialState, action) => {
         case 'FETCH_SONG_LIST':
             return {
                 ...state,
-                songListData: action.payload
+                songListData: action.payload,
+                isFetching: false
             }
         case 'ADD_SONG':
             return {
@@ -22,6 +24,11 @@ export const globalReducer = (state = initialState, action) => {
                 songListData: [...state.songListData, action.payload]
             }
         case 'DELETE_SONG':
+            return {
+                ...state,
+                songListData: action.payload
+            }
+        case 'EDIT_SONG':
             return {
                 ...state,
                 songListData: action.payload
