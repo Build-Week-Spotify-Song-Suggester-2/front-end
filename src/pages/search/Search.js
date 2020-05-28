@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import axios from 'axios';
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import './styles.search.scss'
-const url = 'https://spotify-song-suggester-bw.herokuapp.com/'
+
 
 
 export default function Search() {
@@ -30,8 +30,8 @@ export default function Search() {
     
     useEffect(() => {
       const getList = () => {
-        axios
-          .get(url)
+        axiosWithAuth()
+          .get('https://spotify-song-suggester-bw.herokuapp.com/api/songs')
           .then(response => {
             setSearchList(response.data);
             console.log(response);
@@ -44,12 +44,8 @@ export default function Search() {
     }, []);
 
 
-
-
-
   return (
     
- 
     <form className='search' onSubmit={formSubmit}>
     <h1>Search</h1>
     <br></br>
