@@ -9,6 +9,7 @@ import "./styles.login.scss";
 
 function Login(props) {
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [loginFailed, setLoginFailed] = useState(false)
   const { push } = useHistory();
   const [formState, setFormState] = useState({
     username: "",
@@ -25,6 +26,13 @@ function Login(props) {
     });
   }, [formState]);
 
+  useEffect(() => {
+    if (loginFailed === true){
+      const errDiv = document.querySelector('.loginFailed')
+      errDiv.classList.remove('hide')
+    }
+  }, [loginFailed])
+
   const formSubmit = (e) => {
     e.preventDefault();
 
@@ -36,8 +44,8 @@ function Login(props) {
         props.setLoggedState(true);
         push("/dashboard");
       })
-
       .catch( err => {
+        setLoginFailed(true)
       })
   };
 
@@ -71,6 +79,7 @@ function Login(props) {
   return (
 
     <form className="login" onSubmit={formSubmit}>
+      <div className='loginFailed hide'>Incorrect credentials. Please try again, or <Link to='/register'>Register</Link>.</div>
       <h2>Login</h2>
 
       <label>
