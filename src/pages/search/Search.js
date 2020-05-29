@@ -6,7 +6,7 @@ import { fetchSearchSpotify } from '../../redux/actions'
 import { connect } from 'react-redux'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import SearchCard from './SearchCard'
 
 // TO RESET AFTER SUBMIT
 const initialFormState = {
@@ -17,6 +17,7 @@ const initialFormState = {
 function Search(props) {
   const [formState, setFormState] = useState(initialFormState);
   const [searchList, setSearchList] = useState([]);
+  const [songs, setSong] = useState([])
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -47,8 +48,9 @@ function Search(props) {
       axiosWithAuth()
         .get("https://spotify-song-suggester-bw.herokuapp.com/api/songs")
         .then((response) => {
+          setSong(response.data)
           setSearchList(response.data);
-          console.log(response);
+          console.log(response.data[2], "response");
         })
         .catch((error) => {
           console.error("Server Error", error);
@@ -85,8 +87,13 @@ function Search(props) {
       <Link to={"/register"}>
         <div>Create Account</div>
       </Link>
-
-      <pre>{JSON.stringify(searchList)}</pre>
+      
+      <div>
+      <br></br>
+      {songs.map(song => (
+         <SearchCard key={song.id} song={song} />
+          ))}
+          </div>
     </form>
   );
 }
